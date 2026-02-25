@@ -29,5 +29,5 @@ services:
         fromService:
           type: web
           name: twoyearswithyojit-backend
-          property: url
+          property: host
     plan: free
