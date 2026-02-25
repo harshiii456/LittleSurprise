@@ -19,11 +19,11 @@ services:
     plan: free
 
   # Frontend Static Site
-  - type: static
+  - type: web
     name: twoyearswithyojit-frontend
     runtime: static
     buildCommand: cd frontend && npm install && npm run build
-    publishDir: frontend/dist
+    staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
         fromService:
