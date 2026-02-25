@@ -1,0 +1,33 @@
+services:
+  # Backend API Service
+  - type: web
+    name: twoyearswithyojit-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: ADMIN_PASSWORD
+        value: "260224"
+    plan: free
+
+  # Frontend Static Site
+  - type: static
+    name: twoyearswithyojit-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    publishDir: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: twoyearswithyojit-backend
+          property: url
+    plan: free
