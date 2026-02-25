@@ -15,7 +15,7 @@ const app = express();
 // CORS configuration for production
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.FRONTEND_URL, 'https://twoyearswithyojit-frontend.onrender.com']
+    ? ['https://littlesurprise.onrender.com', 'https://twoyearswithyojit-frontend.onrender.com']
     : 'http://localhost:5173',
   credentials: true,
   optionsSuccessStatus: 200
@@ -40,6 +40,23 @@ app.use('/api/letters', require('./routes/letters'));
 app.use('/api/quiz', require('./routes/quiz'));
 app.use('/api/miss-you', require('./routes/missYou'));
 app.use('/api/timeline', require('./routes/timeline'));
+
+// Root route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'TwoYearsWithYojit API',
+    status: 'Running',
+    endpoints: [
+      'GET /api/health',
+      'POST /api/auth/login',
+      'GET /api/timeline',
+      'GET /api/letters',
+      'GET /api/quiz',
+      'GET /api/memories',
+      'GET /api/miss-you/random'
+    ]
+  });
+});
 
 // Health check
 app.get('/api/health', (req, res) => {

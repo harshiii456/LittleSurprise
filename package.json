@@ -1,0 +1,17 @@
+{
+  "name": "twoyearswithyojit",
+  "version": "1.0.0",
+  "description": "Two Years With Yojit - Anniversary Web Application",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["anniversary", "romantic", "react", "node", "mongodb"],
+  "author": "Harshita",
+  "license": "MIT"
+}
