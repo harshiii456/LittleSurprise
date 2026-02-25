@@ -98,7 +98,7 @@ const Login = () => {
 
         <div className="mt-8 text-center">
           <p className="text-xs text-deep-navy/60 font-serif">
-            For Mingu, from Harshita ❤️
+            For Mingu, from Tingu ❤️
           </p>
         </div>
       </motion.div>

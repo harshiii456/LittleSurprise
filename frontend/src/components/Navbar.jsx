@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
-import { Heart, Home, Clock, Map, Mail, HelpCircle, Gift, Lock, LogOut, X } from 'lucide-react'
+import { Heart, Home, Clock, Map, Mail, HelpCircle, Lock, LogOut, X } from 'lucide-react'
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -15,7 +15,6 @@ const Navbar = () => {
     { path: '/distance', label: 'Distance', icon: Map },
     { path: '/letters', label: 'Letters', icon: Mail },
     { path: '/quiz', label: 'Quiz', icon: HelpCircle },
-    { path: '/open-when', label: 'Open When', icon: Gift },
     { path: '/final', label: 'Final', icon: Lock },
   ]
 

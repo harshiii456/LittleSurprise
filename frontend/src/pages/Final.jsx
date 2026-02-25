@@ -174,7 +174,7 @@ const Final = () => {
                   <p className="text-2xl text-romantic-pink font-script">
                     Happy Anniversary.
                   </p>
-                  <p className="text-xl">— Harshita ❤️</p>
+                  <p className="text-xl">— Tingu ❤️</p>
                 </div>
 
                 {/* Animated Hearts */}
@@ -206,7 +206,7 @@ const Final = () => {
                 className="mt-8"
               >
                 <p className="text-deep-navy/60 font-serif">
-                  Mingu & Harshita — Always.
+                  Mingu & Tingu — Always.
                 </p>
               </motion.div>
             </div>

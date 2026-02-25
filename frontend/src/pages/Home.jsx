@@ -182,7 +182,7 @@ const Home = () => {
         className="absolute bottom-4 left-0 right-0 text-center"
       >
         <p className="text-deep-navy/60 text-sm font-serif">
-          Mingu & Harshita — Always.
+          Mingu & Tingu — Always.
         </p>
       </motion.div>
     </div>

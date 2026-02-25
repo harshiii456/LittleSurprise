@@ -7,7 +7,6 @@ import Timeline from './pages/Timeline'
 import Distance from './pages/Distance'
 import Letters from './pages/Letters'
 import Quiz from './pages/Quiz'
-import OpenWhen from './pages/OpenWhen'
 import Final from './pages/Final'
 import Navbar from './components/Navbar'
 import HeartParticles from './components/HeartParticles'
@@ -64,11 +63,6 @@ function App() {
         <Route path="/quiz" element={
           <ProtectedRoute>
             <Quiz />
-          </ProtectedRoute>
-        } />
-        <Route path="/open-when" element={
-          <ProtectedRoute>
-            <OpenWhen />
           </ProtectedRoute>
         } />
         <Route path="/final" element={
