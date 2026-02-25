@@ -8,6 +8,8 @@ const Final = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
   const [showVideo, setShowVideo] = useState(false)
+  const [videoFile, setVideoFile] = useState(null)
+  const [videoUrl, setVideoUrl] = useState(null)
 
   const handleUnlock = () => {
     if (promise.toLowerCase().includes('promise') || promise.toLowerCase().includes('i promise')) {
@@ -15,6 +17,17 @@ const Final = () => {
       setTimeout(() => setShowVideo(true), 1000)
     } else {
       alert('You need to make a real promise! 💕')
+    }
+  }
+
+  const handleVideoUpload = (event) => {
+    const file = event.target.files[0]
+    if (file && file.type.startsWith('video/')) {
+      setVideoFile(file)
+      const url = URL.createObjectURL(file)
+      setVideoUrl(url)
+    } else {
+      alert('Please upload a valid video file')
     }
   }
 
@@ -103,51 +116,32 @@ const Final = () => {
 
             {/* Main Content */}
             <div className="text-center">
-              {/* Video Section */}
-              {showVideo && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2.5 }}
-                  className="romantic-card rounded-3xl p-8 mb-8 shadow-2xl"
+
+              {/* Google Drive Link Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 3.5 }}
+                className="romantic-card rounded-3xl p-8 mb-8 shadow-2xl"
+              >
+                <h2 className="text-2xl font-bold text-deep-navy font-serif mb-4">
+                  Special Memories
+                </h2>
+                <p className="text-deep-navy font-serif mb-6">
+                  My Special message is waiting for you baby..
+                </p>
+                <button
+                  onClick={() => window.open('https://drive.google.com/drive/folders/1Ski5w31drXkvOzUrTmHdrPBAa4J3EpkX', '_blank')}
+                  className="romantic-button text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center hover:scale-105 active:scale-95 transition-transform pointer-events-auto cursor-pointer"
+                  style={{ zIndex: 50 }}
                 >
-                  <h2 className="text-3xl font-bold text-deep-navy font-serif mb-6">
-                    Our Journey
-                  </h2>
-                  
-                  {/* Video Placeholder */}
-                  <div className="relative bg-black rounded-2xl overflow-hidden mb-6" style={{ paddingBottom: '56.25%' }}>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <Play className="w-16 h-16 mx-auto mb-4 opacity-80" />
-                        <p className="text-lg font-serif">
-                          Video placeholder - Add your special video here
-                        </p>
-                        <p className="text-sm opacity-60 mt-2">
-                          Upload a video montage of your favorite memories together
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Video Controls Overlay */}
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                      <button
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        className="bg-white/20 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white/30 transition-colors"
-                      >
-                        {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                      </button>
-                      
-                      <button
-                        onClick={() => setIsMuted(!isMuted)}
-                        className="bg-white/20 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white/30 transition-colors"
-                      >
-                        {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
+                  <span>Open this link</span>
+                  <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7l-10-5z"/>
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  </svg>
+                </button>
+              </motion.div>
 
               {/* Final Message */}
               <motion.div
@@ -197,6 +191,8 @@ const Final = () => {
                   ))}
                 </div>
               </motion.div>
+
+              
 
               {/* Final Footer */}
               <motion.div
