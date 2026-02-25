@@ -14,60 +14,40 @@ const Quiz = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState([])
   const [showConfetti, setShowConfetti] = useState(false)
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+  const [showWarning, setShowWarning] = useState(true)
 
   useEffect(() => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight })
-    fetchQuestions()
-  }, [])
-
-  const fetchQuestions = async () => {
-    try {
-      const response = await axios.get('/api/quiz')
-      setQuestions(response.data.data)
-    } catch (error) {
-      console.error('Error fetching quiz questions:', error)
-      // Fallback questions
-      setQuestions([
+    // Use local data instead of API fetch
+    const localQuestions = [
         {
           _id: '1',
           question: 'What day did we first meet?',
-          options: ['February 26, 2022', 'March 15, 2022', 'January 1, 2022', 'April 20, 2022'],
-          correctAnswer: 0,
-          explanation: 'The day that changed everything - February 26, 2022'
+          options: ['august 21, 2023', 'august 15, 2023', 'august 24, 2023', 'august 22, 2023'],
+          correctAnswer: 3
         },
         {
           _id: '2',
           question: 'What was our first date activity?',
-          options: ['Movie and dinner', 'Coffee and conversation', 'Long walk in park', 'Shopping together'],
-          correctAnswer: 1,
-          explanation: 'Hours of coffee and conversation that felt like minutes'
+          options: ['Watching movie', 'Coffee and conversation', 'Long walk in park', 'Shopping together'],
+          correctAnswer: 0
         },
         {
           _id: '3',
-          question: 'How long have we been together as of today?',
-          options: ['1 year', '2 years', '6 months', '3 years'],
-          correctAnswer: 1,
-          explanation: 'Two amazing years and counting!'
+          question: 'What is my favorite memory of ours?',
+          options: ['DJ nights', 'Late night coversations', 'Getting ready for u', 'Making food for u'],
+          correctAnswer: 3
         },
         {
           _id: '4',
-          question: 'Where did I say Punjab still owns?',
-          options: ['Your phone', 'Your heart', 'Your dreams', 'Your time'],
-          correctAnswer: 1,
-          explanation: 'Punjab still owns your heart, Bangalore boy!'
-        },
-        {
-          _id: '5',
-          question: 'What\'s our special anniversary date?',
-          options: ['260224', '14022022', '01012023', '31122022'],
-          correctAnswer: 0,
-          explanation: 'February 26, 2024 - our special day!'
+          question: 'What is my favorite gift from you?',
+          options: ['Reading Books', 'Letters', 'Chocolates', 'Moon Lamp'],
+          correctAnswer: 1
         }
-      ])
-    } finally {
-      setLoading(false)
-    }
-  }
+      ]
+      setQuestions(localQuestions)
+    setLoading(false)
+  }, [])
 
   const handleAnswerSelect = (answerIndex) => {
     if (answeredQuestions.includes(currentQuestion)) return
@@ -85,8 +65,14 @@ const Quiz = () => {
       setCurrentQuestion(currentQuestion + 1)
       setSelectedAnswer(null)
     } else {
+      // For the last question, update score if needed before showing results
+      if (selectedAnswer === questions[currentQuestion].correctAnswer && !answeredQuestions.includes(currentQuestion)) {
+        setScore(score + 1)
+      }
       setShowResult(true)
-      if (score + (selectedAnswer === questions[currentQuestion].correctAnswer ? 1 : 0) === questions.length) {
+      // Check if perfect score for confetti
+      const finalScore = selectedAnswer === questions[currentQuestion].correctAnswer ? score + 1 : score
+      if (finalScore === questions.length) {
         setShowConfetti(true)
         setTimeout(() => setShowConfetti(false), 10000)
       }
@@ -103,11 +89,7 @@ const Quiz = () => {
   }
 
   const calculateFinalScore = () => {
-    let finalScore = score
-    if (selectedAnswer === questions[currentQuestion]?.correctAnswer) {
-      finalScore += 1
-    }
-    return finalScore
+    return score
   }
 
   if (loading) {
@@ -137,6 +119,33 @@ const Quiz = () => {
         />
       )}
 
+      {/* Warning Modal */}
+      {showWarning && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="romantic-card rounded-2xl p-8 max-w-md w-full text-center"
+          >
+            <div className="text-6xl mb-6">⚠️</div>
+            <h2 className="text-2xl font-bold text-deep-navy font-serif mb-4">
+              Quiz Warning
+            </h2>
+            <p className="text-lg text-deep-navy font-serif mb-6">
+              if you get even 1 wrong, i will kill u
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowWarning(false)}
+              className="romantic-button text-white font-bold py-3 px-8 rounded-full text-lg"
+            >
+              I Accept My Fate
+            </motion.button>
+          </motion.div>
+        </div>
+      )}
+
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <motion.div
@@ -147,7 +156,7 @@ const Quiz = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-deep-navy font-serif mb-4">
             How Well Do You Know Us?
           </h1>
-          <p className="text-xl text-soft-rose font-script">
+          <p className="text-3xl md:text-4xl font-script text-deep-navy mb-8 font-bold">
             Test your knowledge of our love story
           </p>
         </motion.div>
@@ -230,23 +239,7 @@ const Quiz = () => {
                 })}
               </div>
 
-              {/* Explanation */}
-              <AnimatePresence>
-                {answeredQuestions.includes(currentQuestion) && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-6 p-4 bg-romantic-pink/10 rounded-xl border border-romantic-pink/30"
-                  >
-                    <p className="text-deep-navy font-serif">
-                      <strong>Explanation:</strong> {questions[currentQuestion]?.explanation}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-
-            {/* Next Button */}
+              {/* Next Button */}
             {answeredQuestions.includes(currentQuestion) && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -259,10 +252,11 @@ const Quiz = () => {
                   onClick={handleNextQuestion}
                   className="romantic-button text-white font-bold py-3 px-8 rounded-full text-lg"
                 >
-                  {currentQuestion === questions.length - 1 ? 'See Results' : 'Next Question'}
+                  Next
                 </motion.button>
               </motion.div>
-            )}
+            )}    </motion.div>
+            
           </>
         ) : (
           /* Results */

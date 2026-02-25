@@ -9,66 +9,57 @@ const Timeline = () => {
   const [expandedEvents, setExpandedEvents] = useState(new Set())
 
   useEffect(() => {
-    fetchTimelineEvents()
-  }, [])
-
-  const fetchTimelineEvents = async () => {
-    try {
-      const response = await axios.get('/api/timeline')
-      setEvents(response.data.data)
-    } catch (error) {
-      console.error('Error fetching timeline events:', error)
-      // Fallback data
-      setEvents([
+    // Use local data instead of API fetch
+    const localEvents = [
         {
           _id: '1',
           title: 'The Day We Met',
-          date: '2022-02-26',
-          description: 'The moment that changed everything forever.',
-          whatIWasThinking: 'Is this the person I\'ve been waiting for? My heart knew before my mind did.',
+          date: '2023-08-22',
+          description: 'Jaha sb kuch change ho geya',
+          whatIWasThinking: 'Bhai ye kon hai???.. (mujhe to tu first look me psnd hi ni aya tha...hehehe)',
           icon: '💫',
           order: 1
         },
         {
           _id: '2',
           title: 'First Conversation',
-          date: '2022-02-27',
-          description: 'Talking for hours like we\'d known each other forever.',
-          whatIWasThinking: 'How can someone\'s voice feel like home? I never wanted this conversation to end.',
+          date: '2023-08-22',
+          description: 'Jaha tune mujhe Judje kiya hoga pkaaa',
+          whatIWasThinking: 'Ki mein prince Narula se kese baat kru or kyaaaa...hahah',
           icon: '💬',
           order: 2
         },
         {
           _id: '3',
-          title: 'First Date',
-          date: '2022-03-05',
-          description: 'Nervous laughter, stolen glances, and the beginning of us.',
-          whatIWasThinking: 'I tried to play it cool, but my heart was doing backflips. This is real.',
-          icon: '☕',
+          title: 'The Moment I Knew',
+          date: '2024-02-19',
+          description: 'Jb mujhe pka surety ho gyi',
+          whatIWasThinking: 'bhai us din mujhe surety ho gyi thi, ki haan ye sirf dosti nhi usse kuch to zyada hai',
+          icon: '💕',
           order: 3
         },
         {
           _id: '4',
-          title: 'The Moment I Knew',
-          date: '2022-04-15',
-          description: 'When I realized you were my forever.',
-          whatIWasThinking: 'It wasn\'t one big moment, but a thousand small ones that added up to forever.',
-          icon: '💕',
+          title: 'First Date',
+          date: '2024-10-04',
+          description: 'humari starting',
+          whatIWasThinking: 'vese to vo double date thi (movie date), but jese tu mere sath dance kiya, humne sath me movie dekhi.... loved it',
+          icon: '☕',
           order: 4
         },
         {
           _id: '5',
           title: 'Fights We Survived',
-          date: '2022-08-20',
-          description: 'Every argument made us stronger.',
-          whatIWasThinking: 'Even when we fight, I know we\'ll choose each other. That\'s what matters.',
+          date: 'hr roz',
+          description: 'hr ldai se hum strong hue hai',
+          whatIWasThinking: 'humari hr ldai me tune sirf mujhe smjha hai, khud ka point of view rkhne se pehle tune mujhe suna hai...thnku baby',
           icon: '💪',
           order: 5
         },
         {
           _id: '6',
           title: '1 Year Strong',
-          date: '2023-02-26',
+          date: '2025-02-26',
           description: '365 days of choosing you every single morning.',
           whatIWasThinking: 'One year down, and I\'d choose you again in every lifetime.',
           icon: '🎉',
@@ -76,27 +67,26 @@ const Timeline = () => {
         },
         {
           _id: '7',
-          title: 'The Day You Left for Bangalore',
-          date: '2024-01-15',
+          title: 'The Day You Left me alone',
+          date: '2026-01-28',
           description: 'The hardest goodbye, but not the end of our story.',
-          whatIWasThinking: 'My heart broke a little, but I know distance can\'t break what\'s real.',
+          whatIWasThinking: 'I cant tell u mein kitna royi thi room ake.....',
           icon: '✈️',
           order: 7
         },
         {
           _id: '8',
           title: '2 Years Today – Still Obsessed',
-          date: '2024-02-26',
+          date: '2026-02-26',
           description: '730 days and I\'m still falling for you.',
           whatIWasThinking: 'After all this time, my heart still races when I think of you. Always will.',
           icon: '👑',
           order: 8
         }
-      ])
-    } finally {
-      setLoading(false)
-    }
-  }
+      ]
+      setEvents(localEvents)
+    setLoading(false)
+  }, [])
 
   const toggleExpanded = (eventId) => {
     const newExpanded = new Set(expandedEvents)
@@ -140,7 +130,7 @@ const Timeline = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-deep-navy font-serif mb-4">
             Our Love Story
           </h1>
-          <p className="text-xl text-soft-rose font-script">
+          <p className="text-3xl md:text-4xl font-script text-deep-navy mb-8 font-bold">
             Every moment that brought us here
           </p>
         </motion.div>

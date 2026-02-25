@@ -7,8 +7,8 @@ const Home = () => {
   const [audio, setAudio] = useState(null)
 
   useEffect(() => {
-    // Create audio element (you'll need to add an actual audio file)
-    const audioElement = new Audio('/romantic-music.mp3')
+    // Create audio element with free romantic music
+    const audioElement = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')
     audioElement.loop = true
     audioElement.volume = 0.3
     setAudio(audioElement)
@@ -24,11 +24,15 @@ const Home = () => {
     if (!audio) return
 
     if (isMuted) {
-      audio.play().catch(error => {
-        console.log('Audio autoplay prevented:', error)
+      audio.play().then(() => {
+        console.log('Music started playing')
+      }).catch(error => {
+        console.log('Audio play failed:', error)
+        alert('Please click again to play music (browser requires user interaction)')
       })
     } else {
       audio.pause()
+      console.log('Music paused')
     }
     setIsMuted(!isMuted)
   }
@@ -118,9 +122,9 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-2xl md:text-3xl font-script text-soft-rose mb-8"
+            className="text-3xl md:text-4xl font-script text-deep-navy mb-8 font-bold"
           >
-            For Yojit Patni
+            For Minguuu
           </motion.p>
 
           {/* Welcome message */}
@@ -131,8 +135,7 @@ const Home = () => {
             className="romantic-card rounded-2xl p-6 mb-8 max-w-2xl mx-auto"
           >
             <p className="text-lg text-deep-navy leading-relaxed">
-              Hi Bangalore boy. If you're here, it means we survived 2 years... 
-              <span className="font-script text-romantic-pink text-xl"> Punjab still owns your heart.</span>
+              chlo cutie humne finally 2 saal nikal liye sath me
             </p>
           </motion.div>
 
@@ -162,7 +165,7 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex items-center justify-center text-deep-navy/60 text-sm"
+              className="flex items-center justify-center text-deep-navy/60 text-sm mb-8"
             >
               <Music className="w-4 h-4 mr-2" />
               Click the sound icon to play our song
@@ -179,7 +182,7 @@ const Home = () => {
         className="absolute bottom-4 left-0 right-0 text-center"
       >
         <p className="text-deep-navy/60 text-sm font-serif">
-          Yojit Patni & Harshita — Always.
+          Mingu & Harshita — Always.
         </p>
       </motion.div>
     </div>

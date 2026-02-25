@@ -39,9 +39,9 @@ const Login = () => {
           </motion.div>
           
           <h1 className="text-3xl font-bold text-deep-navy mb-2 font-serif">
-            Two Years With Yojit
+            Two Years With Mingu
           </h1>
-          <p className="text-soft-rose font-script text-lg">
+          <p className="text-3xl md:text-2xl font-script text-deep-navy mb-8 font-bold">
             Our private anniversary celebration
           </p>
         </div>
@@ -98,7 +98,7 @@ const Login = () => {
 
         <div className="mt-8 text-center">
           <p className="text-xs text-deep-navy/60 font-serif">
-            For Yojit Patni, from Harshita ❤️
+            For Mingu, from Harshita ❤️
           </p>
         </div>
       </motion.div>

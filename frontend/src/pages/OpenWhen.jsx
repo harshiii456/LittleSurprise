@@ -59,7 +59,7 @@ Harshita 💕`
       title: 'Open When You\'re Stressed',
       icon: Smile,
       color: 'from-blue-400 to-purple-400',
-      content: `Dear Yojit,
+      content: `Dear Mingu,
 
 I know you're probably overwhelmed right now. Work stress, life pressure, maybe everything feels like too much.
 

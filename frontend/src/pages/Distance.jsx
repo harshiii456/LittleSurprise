@@ -62,7 +62,7 @@ const Distance = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-deep-navy font-serif mb-4">
             Across the Miles
           </h1>
-          <p className="text-xl text-soft-rose font-script">
+          <p className="text-3xl md:text-4xl font-script text-deep-navy mb-8 font-bold">
             Punjab to Bangalore - Our Love Knows No Distance
           </p>
         </motion.div>

@@ -170,7 +170,7 @@ const Final = () => {
 
                 <div className="space-y-4 text-lg text-deep-navy font-serif leading-relaxed max-w-2xl mx-auto">
                   <p>2 years. 1 month distance. Zero doubts.</p>
-                  <p>I'm still choosing you, Yojit.</p>
+                  <p>I'm still choosing you, Mingu.</p>
                   <p className="text-2xl text-romantic-pink font-script">
                     Happy Anniversary.
                   </p>
@@ -206,7 +206,7 @@ const Final = () => {
                 className="mt-8"
               >
                 <p className="text-deep-navy/60 font-serif">
-                  Yojit Patni & Harshita — Always.
+                  Mingu & Harshita — Always.
                 </p>
               </motion.div>
             </div>

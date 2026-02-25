@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import Timeline from './pages/Timeline'
 import Distance from './pages/Distance'
 import Letters from './pages/Letters'
-import Gallery from './pages/Gallery'
 import Quiz from './pages/Quiz'
 import OpenWhen from './pages/OpenWhen'
 import Final from './pages/Final'
@@ -60,11 +59,6 @@ function App() {
         <Route path="/letters" element={
           <ProtectedRoute>
             <Letters />
-          </ProtectedRoute>
-        } />
-        <Route path="/gallery" element={
-          <ProtectedRoute>
-            <Gallery />
           </ProtectedRoute>
         } />
         <Route path="/quiz" element={

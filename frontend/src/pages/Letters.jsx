@@ -39,109 +39,79 @@ const Letters = () => {
   const [selectedCategory, setSelectedCategory] = useState('reasons')
 
   useEffect(() => {
-    fetchLetters()
-  }, [])
-
-  const fetchLetters = async () => {
-    try {
-      const response = await axios.get('/api/letters')
-      const allLetters = response.data.data
-      
-      // Group by category
-      const grouped = allLetters.reduce((acc, letter) => {
-        if (!acc[letter.category]) {
-          acc[letter.category] = []
+    // Use local data instead of API fetch
+    const localLetters = {
+      reasons: [
+        {
+          _id: '1',
+          title: 'The way you look at me',
+          content: 'jb tu mujhe dekhta na tb esa lgta ki mein tere liye kitni important hu, teri eyes me mere liye vo affection and love dikhta which i love the most',
+          order: 1
+        },
+        {
+          _id: '2',
+          title: 'Your patience with my chaos',
+          content: 'Tu pta nhi kese mere mood swings ko handle karta mujhe nhi smjh ata, agar mein teri jgha hoti to ab tk pgl ho jati',
+          order: 2
+        },
+        {
+          _id: '3',
+          title: 'How you make me laugh',
+          content: 'mein jitna mrzi ro rhi hu, tujhe pta hai ki mujh ekese hasana hai....',
+          order: 3
+        },
+        {
+          _id: '4',
+          title: 'Your dedication to us',
+          content: 'mujhe jitni mrzi overthinking ho, insecurity ho, tu bhi mujhe support karta or mujhe humesha reassure krta..',
+          order: 4
+        },
+        {
+          _id: '5',
+          title: 'The little things',
+          content: 'Roz subha good morning ke messages + random calls + meri btai hui hr chotti cheez yaad rkhna',
+          order: 5
         }
-        acc[letter.category].push(letter)
-        return acc
-      }, {})
-
-      setLetters({
-        reasons: grouped.reasons || [],
-        unsaid: grouped.unsaid || [],
-        promises: grouped.promises || []
-      })
-    } catch (error) {
-      console.error('Error fetching letters:', error)
-      // Fallback data
-      setLetters({
-        reasons: [
-          {
-            _id: '1',
-            title: 'The way you look at me',
-            content: 'Like I\'m the only person in the world, even in a crowded room.',
-            order: 1
-          },
-          {
-            _id: '2',
-            title: 'Your patience with my chaos',
-            content: 'You handle my mood swings and overthinking with a calm that amazes me.',
-            order: 2
-          },
-          {
-            _id: '3',
-            title: 'How you make me laugh',
-            content: 'Even on my worst days, you find a way to make me smile.',
-            order: 3
-          },
-          {
-            _id: '4',
-            title: 'Your dedication to us',
-            content: 'Even with distance, you never let me doubt our love.',
-            order: 4
-          },
-          {
-            _id: '5',
-            title: 'The little things',
-            content: 'Good morning texts, random calls, remembering tiny details I mention.',
-            order: 5
-          }
-        ],
-        unsaid: [
-          {
-            _id: '6',
-            title: 'I\'m proud of you',
-            content: 'More than you\'ll ever know. Every achievement, every step forward.',
-            order: 1
-          },
-          {
-            _id: '7',
-            title: 'I worry about you',
-            content: 'When you\'re stressed, when you\'re tired, when you work too hard.',
-            order: 2
-          },
-          {
-            _id: '8',
-            title: 'I imagine our future',
-            content: 'Randomly, in the middle of the day. Little moments we\'ll share.',
-            order: 3
-          }
-        ],
-        promises: [
-          {
-            _id: '9',
-            title: 'I\'ll always choose you',
-            content: 'Every morning, every decision, every crossroads - it\'s always you.',
-            order: 1
-          },
-          {
-            _id: '10',
-            title: 'I\'ll support your dreams',
-            content: 'Even when they scare me, even when they take you far away.',
-            order: 2
-          },
-          {
-            _id: '11',
-            title: 'I\'ll love you through the distance',
-            content: 'Until we close every mile between us and more.',
-            order: 3
-          }
-        ]
-      })
-    } finally {
-      setLoading(false)
+      ],
+      unsaid: [
+        {
+          _id: '6',
+          title: 'I\'m proud of you',
+          content: 'I know mein bolti nhi, but baby i am really proud of you',
+          order: 1
+        },
+        {
+          _id: '7',
+          title: 'I worry about you',
+          content: 'ofc I worry about you, but i am not going to stop you from doing anything',
+          order: 2
+        },
+        {
+          _id: '8',
+          title: 'I imagine our future',
+          content: 'roz raat ko sone se pehle mein sochti hu ki kb hum firse mile ge or jb mile ge to kya kya batien kre ge',
+          order: 3
+        }
+      ],
+      promises: [
+        {
+          _id: '9',
+          title: 'I\'ll always choose you',
+          content: 'tujhe nhi choose kru gi to tu mujhe maar dega .... isiliye i will always choose you',
+          order: 1
+        },
+        {
+          _id: '10',
+          title: 'I\'ll support your dreams',
+          content: 'mein humesha tere sath hu chahe jo mrzi ho jaye',
+          order: 2
+        }
+      ]
     }
-  }
+    
+    setLetters(localLetters)
+    setLoading(false)
+  }, [])
 
   const categories = [
     { id: 'reasons', title: '10 Reasons I Still Choose You', icon: '💕' },
@@ -176,7 +146,7 @@ const Letters = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-deep-navy font-serif mb-4">
             Love Letters
           </h1>
-          <p className="text-xl text-soft-rose font-script">
+          <p className="text-3xl md:text-4xl font-script text-deep-navy mb-8 font-bold">
             Words my heart whispers when you're not listening
           </p>
         </motion.div>
@@ -268,13 +238,7 @@ const Letters = () => {
           transition={{ delay: 1.2 }}
           className="mt-16 text-center"
         >
-          <div className="romantic-card rounded-2xl p-6 max-w-2xl mx-auto">
-            <Mail className="w-8 h-8 text-romantic-pink mx-auto mb-4" />
-            <p className="text-lg text-deep-navy font-serif">
-              These words are just the beginning. 
-              My heart writes a new letter to you every single day.
-            </p>
-          </div>
+          
         </motion.div>
       </div>
     </div>

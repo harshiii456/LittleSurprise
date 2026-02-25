@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
-import { Heart, Home, Clock, Map, Mail, Image, HelpCircle, Gift, Lock, LogOut, X } from 'lucide-react'
+import { Heart, Home, Clock, Map, Mail, HelpCircle, Gift, Lock, LogOut, X } from 'lucide-react'
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -14,7 +14,6 @@ const Navbar = () => {
     { path: '/timeline', label: 'Timeline', icon: Clock },
     { path: '/distance', label: 'Distance', icon: Map },
     { path: '/letters', label: 'Letters', icon: Mail },
-    { path: '/gallery', label: 'Gallery', icon: Image },
     { path: '/quiz', label: 'Quiz', icon: HelpCircle },
     { path: '/open-when', label: 'Open When', icon: Gift },
     { path: '/final', label: 'Final', icon: Lock },
@@ -35,7 +34,7 @@ const Navbar = () => {
               <Heart className="w-8 h-8 text-romantic-pink" />
             </motion.div>
             <span className="text-xl font-bold text-deep-navy font-serif">
-              Two Years With Yojit
+              Two Years With Mingu
             </span>
           </Link>
 
