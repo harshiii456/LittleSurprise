@@ -22,12 +22,9 @@ services:
   - type: web
     name: twoyearswithyojit-frontend
     runtime: static
-    buildCommand: cd frontend && npm install && npm run build
+    buildCommand: cd frontend && npm install && VITE_API_URL=/api npm run build
     staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: twoyearswithyojit-backend
-          property: host
+        value: /api
     plan: free
