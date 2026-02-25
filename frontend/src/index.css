@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Georgia', serif;
+  }
+  
+  .font-script {
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+@layer components {
+  .romantic-gradient {
+    background: linear-gradient(135deg, #FFB6C1 0%, #FFD1DC 50%, #FFE5EC 100%);
+  }
+  
+  .heart-particle {
+    position: absolute;
+    color: #FFB6C1;
+    animation: float 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  .romantic-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.1);
+  }
+  
+  .romantic-button {
+    background: linear-gradient(135deg, #FFB6C1, #FFD1DC);
+    transition: all 0.3s ease;
+  }
+  
+  .romantic-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+  }
+}
