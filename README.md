@@ -1,6 +1,6 @@
-# Two Years With Yojit 💕
+# Two Years 💕
 
-A romantic anniversary web application celebrating 2 years of love between Harshita (Punjab) and Yojit Patni (Bangalore).
+A romantic anniversary web application celebrating 2 years of love.
 
 ## 🎯 Project Overview
 
@@ -168,7 +168,7 @@ TwoYearsWithYojit/
 ## 🔐 Authentication
 
 The application uses a simple password-based authentication system:
-- **Default Password**: `260224` (February 26, 2024)
+- **Default Password**: `` (February 26, 2024)
 - Password is hashed using bcrypt
 - JWT tokens for session management
 - Protected routes for all main content
@@ -224,25 +224,19 @@ The application uses a simple password-based authentication system:
 - Hidden clickable heart
 - Tabbed navigation
 
-### 6. Gallery
-- Masonry layout
-- Modal image views
-- Memory descriptions
-- Hover effects
-
-### 7. Quiz Page
+### 6. Quiz Page
 - Interactive questions
 - Progress bar
 - Score tracking
 - Confetti for perfect scores
 
-### 8. Open When Cards
+### 7. Open When Cards
 - Five emotional scenarios
 - Animated card reveals
 - Modal letter displays
 - Persistent open state
 
-### 9. Final Page
+### 8. Final Page
 - Promise-based unlock
 - Video component placeholder
 - Fade-to-black transition
@@ -292,7 +286,6 @@ npm run build
 
 This project is a private anniversary gift. Please respect the personal nature of this application.
 
-## 💌 Message from Harshita
 
 Yojit, this website is a celebration of our beautiful journey together. Every line of code, every animation, every word was written with love. Thank you for two amazing years, and here's to many more.
 
